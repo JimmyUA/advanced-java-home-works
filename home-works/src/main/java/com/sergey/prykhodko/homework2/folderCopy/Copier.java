@@ -1,4 +1,4 @@
-package folderCopy;
+package com.sergey.prykhodko.homework2.folderCopy;
 
 import java.io.*;
 

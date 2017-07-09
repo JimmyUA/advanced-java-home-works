@@ -1,4 +1,4 @@
-package collections.my;
+package com.sergey.prykhodko.homework4.collections.my;
 
 import java.util.*;
 

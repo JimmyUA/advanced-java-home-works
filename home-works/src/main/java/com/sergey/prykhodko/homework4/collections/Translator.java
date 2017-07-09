@@ -1,5 +1,7 @@
-package collections;
+package com.sergey.prykhodko.homework4.collections;
 
+
+import com.sergey.prykhodko.homework4.collections.Dictionary;
 
 import java.io.*;
 import java.util.Map;
