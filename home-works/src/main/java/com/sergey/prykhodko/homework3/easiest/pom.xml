@@ -32,7 +32,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>com.sergey.prykhodko.App</mainClass>
+              <mainClass>com.sergey.prykhodko.AppM</mainClass>
             </manifest>
           </archive>
         </configuration>

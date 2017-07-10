@@ -1,10 +1,10 @@
-package com.sergey.prykhodko;
+package com.sergey.prykhodko.homework3.calc.calculator.src.main.java.com.sergey.prykhodko;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class AppCalc
 {
     public static void main( String[] args )
     {

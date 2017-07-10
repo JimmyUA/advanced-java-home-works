@@ -11,6 +11,29 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
     private Set<K> keySet;
     private int size = 0;
 
+    public MyTreeMap(){
+        comparator = null;
+        root =null;
+        keySet = new TreeSet<>();
+    }
+
+    public Enumeration<Entry<K, V>> elements() {
+        return new Enumeration<Entry<K, V>>() {
+            int count = 0;
+
+            @Override
+            public boolean hasMoreElements() {
+                return count < keySet.size();
+            }
+
+            @Override
+            public Entry<K, V> nextElement() {
+                List<K> keys = new ArrayList<>(keySet);
+                K key = keys.get(count++);
+                return new Entry<K, V>(key, MyTreeMap.this.get(key));
+            }
+        };
+    }
 
     @Override
     public Comparator<? super K> comparator() {
@@ -112,7 +135,7 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
             if (cKey.compareTo(current.getKey()) < 0 && current.left != null) {
                 current = current.left;
             }
-            else if (cKey.compareTo(current.getKey()) < 0 && current.right != null){
+            else if (cKey.compareTo(current.getKey()) > 0 && current.right != null){
                 current = current.right;
             }
             else if (cKey.compareTo(current.getKey()) == 0){
@@ -184,6 +207,7 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
                         current.parent.left = current;
                     }
                     current.left = swap.left;
+                    keySet.remove(key);
                     return swap.getValue();
                 }
                 else if (current.left != null) {
@@ -196,6 +220,7 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
                     else if (!isRight){
                         current.parent.left = current;
                     }
+                    keySet.remove(key);
                     return swap.value;
                 }
                 else {
@@ -203,6 +228,7 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
                         Entry<K, V> swap = current;
                         current = current.parent;
                         current.right = null;
+                        keySet.remove(swap.getKey());
                         return swap.getValue();
                     }
                     else {
@@ -239,7 +265,12 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
 
     @Override
     public Collection<V> values() {
-        throw new UnsupportedOperationException();
+
+        Collection<V> values = new LinkedList<>();
+        for (K key : keySet) {
+            values.add(this.get(key));
+        }
+        return values;
     }
 
     @Override
@@ -269,6 +300,10 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
             this.value =value;
             this.parent = null;
         }
+
+        public String toString(){
+            return this.getKey() + "/" + this.getValue();
+        }
         @Override
         public K getKey() {
             return key;
@@ -291,14 +326,9 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
             return this.getKey().compareTo(((Entry<K, V>)o).getKey());
         }
     }
-    public MyTreeMap(){
-        comparator = null;
-        root =null;
-        keySet = new TreeSet<>();
-    }
 
     public static void main(String[] args) {
-        Map<Integer, String> map = new MyTreeMap<Integer, String>();
+        MyTreeMap<Integer, String> map = new MyTreeMap<Integer, String>();
         map.put(8, "eight");
         map.put(5, "five");
         map.put(2, "two");
@@ -314,6 +344,8 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
         {
             System.out.println(entry.getKey() + "/" + entry.getValue());
         }
+        for (Enumeration<Entry<Integer, String>> e = map.elements(); e.hasMoreElements();)
+            System.out.println(e.nextElement().toString());
     }
 
 
