@@ -1,5 +1,7 @@
 package com.sergey.prykhodko.homework4.collections.my;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.*;
 
 /**
@@ -327,25 +329,51 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
         }
     }
 
-    public static void main(String[] args) {
-        MyTreeMap<Integer, String> map = new MyTreeMap<Integer, String>();
-        map.put(8, "eight");
-        map.put(5, "five");
-        map.put(2, "two");
-        map.put(7, "seven");
-        map.put(11, "eleven");
-        map.put(116, "116");
-        map.put(1, "1");
-        map.put(3, "3");
+    public static <T extends Number> List<T> withoutBites(Collection<T> collection) {
+        List<T> result = new ArrayList<>();
+        int compareWith = 0b1111111111111111;
+        int sumLowBits = 0;
 
-
-        System.out.println(map.remove(2));
-        for (Map.Entry<Integer, String> entry : map.entrySet())
-        {
-            System.out.println(entry.getKey() + "/" + entry.getValue());
+        for (T element : collection) {
+            int youngBits = (element.shortValue());
+            youngBits &= compareWith;
+            sumLowBits += youngBits;
         }
-        for (Enumeration<Entry<Integer, String>> e = map.elements(); e.hasMoreElements();)
-            System.out.println(e.nextElement().toString());
+
+        Integer averadge = sumLowBits / collection.size();
+        System.out.println(averadge);
+
+//        for (T element : collection) {
+//            element -= averadge;
+//        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+//        MyTreeMap<Integer, String> map = new MyTreeMap<Integer, String>();
+//        map.put(8, "eight");
+//        map.put(5, "five");
+//        map.put(2, "two");
+//        map.put(7, "seven");
+//        map.put(11, "eleven");
+//        map.put(116, "116");
+//        map.put(1, "1");
+//        map.put(3, "3");
+//
+//
+//        System.out.println(map.remove(2));
+//        for (Map.Entry<Integer, String> entry : map.entrySet())
+//        {
+//            System.out.println(entry.getKey() + "/" + entry.getValue());
+//        }
+//        for (Enumeration<Entry<Integer, String>> e = map.elements(); e.hasMoreElements();)
+//            System.out.println(e.nextElement().toString());
+
+        Collection<BigInteger> col = new ArrayList<>();
+        col.add(BigInteger.valueOf(232331313));
+
+        withoutBites(col);
     }
 
 

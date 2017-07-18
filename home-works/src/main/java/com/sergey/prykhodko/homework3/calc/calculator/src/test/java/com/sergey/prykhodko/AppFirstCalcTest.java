@@ -25,7 +25,7 @@ public class AppFirstCalcTest
      */
     public static Test suite()
     {
-        return new TestSuite( com.sergey.prykhodko.AppFirstCalcTest.class );
+        return new TestSuite( AppFirstCalcTest.class );
     }
 
     /**
@@ -35,4 +35,5 @@ public class AppFirstCalcTest
     {
         assertTrue( true );
     }
+
 }

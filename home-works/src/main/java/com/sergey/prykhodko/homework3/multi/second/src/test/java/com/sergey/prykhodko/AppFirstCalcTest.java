@@ -1,4 +1,4 @@
-package com.sergey.prykhodko;
+package com.sergey.prykhodko.homework3.multi.second.src.test.java.com.sergey.prykhodko;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
