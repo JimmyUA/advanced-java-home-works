@@ -340,7 +340,7 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
             sumLowBits += youngBits;
         }
 
-        Integer averadge = sumLowBits / collection.size();
+        int averadge = sumLowBits / collection.size();
         System.out.println(averadge);
 
 //        for (T element : collection) {
@@ -370,10 +370,17 @@ public class MyTreeMap<K extends Comparable, V> implements SortedMap<K, V> {
 //        for (Enumeration<Entry<Integer, String>> e = map.elements(); e.hasMoreElements();)
 //            System.out.println(e.nextElement().toString());
 
-        Collection<BigInteger> col = new ArrayList<>();
-        col.add(BigInteger.valueOf(232331313));
+        Collection<Integer> col = new ArrayList<>();
+        col.add(33000);
+
 
         withoutBites(col);
+
+        BigInteger b = new BigInteger("33000");
+        System.out.println(b.shortValue());
+
+        System.out.println(Short.MAX_VALUE);
+
     }
 
 
